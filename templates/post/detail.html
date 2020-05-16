@@ -1,0 +1,25 @@
+   {% extends 'base.html' %}
+    {% block body %}
+
+<div class="container">
+       <div class="row">
+   <div class="col-md-6 col-md-offset-5">
+       <div class="thumbnail">
+           <div class="caption">
+              {% if post.image %}
+                <img src="{{ post.image.url }}" class="img-responsive" width="600px">
+               {% endif %}
+               <h3>{{ post.title }}<small> {{ post.publishing_date}}</small></h3>
+               <p>{{ post.content|linebreaks }}</p>
+               <p>
+                   <a href="{{ post.get_absolute_url }}" role="button" class="btn btn-primary">İncele</a>
+                   <a href="{{ post.get_update_url }}" role="button" class="btn btn-default">Güncelle</a>
+                   <a href="{{ post.get_delete_url }}" role="button" class="btn btn-danger">Sil</a>
+               </p>
+           </div>
+       </div>
+   </div>
+
+</div>
+    </div>
+{% endblock %}

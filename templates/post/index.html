@@ -1,0 +1,32 @@
+   {% extends 'base.html' %}
+   {% block title %} Kitaplar - {{ block.super }} {% endblock %}
+    {% block body %}
+
+
+
+{# <a href="/post/{{post.id}}" >{{ post.title }} </a> #}
+{# <a href="{% url 'detail' id=post.id %}">{{ post.title }} </a> #}
+   <div class="container">
+{% for post in posts %}
+       <div class="row">
+   <div class="col-md-6 col-md-offset-5">
+       <div class="thumbnail">
+           <div class="caption">
+               {% if post.image %}
+                <img src="{{ post.image.url }}" class="img-responsive" width="100px">
+               {% endif %}
+               <h3>{{ post.title }}<small> {{ post.publishing_date|timesince}} önce</small></h3>
+               <p>{{ post.content|linebreaks|truncatechars:150 }}</p>
+               <p>
+                   <a href="{{ post.get_absolute_url }}" role="button" class="btn btn-primary">İncele</a>
+                   <a href="{{ post.get_update_url }}" role="button" class="btn btn-default">Güncelle</a>
+                   <a href="{{ post.get_delete_url }}" role="button" class="btn btn-danger">Sil</a>
+               </p>
+           </div>
+       </div>
+   </div>
+</div>
+<br />
+{% endfor %}
+       </div>
+{% endblock %}
