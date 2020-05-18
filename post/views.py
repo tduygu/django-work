@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect, redirect, Http404
 from .models import Post
 from .forms import PostForm
 from django.contrib import messages
@@ -18,6 +18,8 @@ def post_detail(request, id):
     # return HttpResponse('Burası post detail sayfası')
 
 def post_create(request):
+    if not request.user.is_authenticated():
+        return Http404
     # form = PostForm()
 
 
@@ -47,6 +49,9 @@ def post_create(request):
     return render(request, 'post/form.html', context)
 
 def post_update(request, id):
+    if not request.user.is_authenticated():
+        return Http404
+
     post = get_object_or_404(Post, id=id)
     print(post)
     # form = PostForm(request.POST, instance=post)
@@ -61,6 +66,9 @@ def post_update(request, id):
     # return HttpResponse('Burası post update sayfası')
 
 def post_delete(request, id):
+    if not request.user.is_authenticated():
+        return Http404
+
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect('post:index')
