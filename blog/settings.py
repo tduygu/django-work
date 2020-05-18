@@ -25,7 +25,7 @@ SECRET_KEY = 'owjl+cfizxt6b0s&vynd#u*k)^^dg(ai5c#uc76ip)4_n-pb(f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.duygutuncay.com']
 
 
 # Application definition
